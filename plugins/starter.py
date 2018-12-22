@@ -48,17 +48,21 @@ async def get_massage(session: NLPSession):
             'question': question,
             'top': 1
         }
-        content = json.dumps(query)
-        print("content= "+content)
+        # content = query.get('question')
+        # print("content= "+content)
         # 将prediction发送给QnA maker
-        result = get_answers(content)
-        ans = pretty_print(result).encode('utf-8').decode('unicode_escape').split('answer')[2].split('"')[2]
+        # result = get_answers(content)
+        # print (pretty_print(result))
+        # ans = pretty_print(result).encode('utf-8').decode('unicode_escape').split('answer')[2].split('"')[2]
+        print("ques"+question)
+        ans = get_answers_from_file(question)
+        print ("ans"+ans)
         # 将ans返回给用户
-        if ans=="No good match found in KB.":
+        if ans=="No answer":
             pass
         else:
             end = time.clock()
-            await session.send(ans + " 本次查询耗时" + str(end - start) + "秒")
+            await session.send(ans)
 
 
 

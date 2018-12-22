@@ -1,6 +1,5 @@
 from os import path
 import none
-
 import config
 
 if __name__ == '__main__':

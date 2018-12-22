@@ -1,6 +1,7 @@
 import json
 import os.path
 from pprint import pprint
+from typing import Any
 
 from azure.cognitiveservices.language.luis.runtime import LUISRuntimeClient
 
@@ -72,7 +73,8 @@ def get_prediction(subscription_key, query_in):
 
 
 if __name__ == "__main__":
-    import sys, os.path
+    import sys
+    import os.path
     sys.path.append(os.path.abspath(os.path.join(__file__, "..", "..")))
 
     get_prediction(SUBSCRIPTION_KEY_ENV_NAME, "你好")

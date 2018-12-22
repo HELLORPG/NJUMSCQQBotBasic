@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import http.client, urllib.parse, json, time
-
+import random
+from pprint import pprint
 # a valid host name.
 host = "se-service-robot.azurewebsites.net"
 
@@ -43,7 +44,16 @@ def get_answers(content):
     return response.read()
 
 
+def get_answers_from_file(content):
+    with open("files/qna.json","r",encoding="UTF-8") as qna:
+        qna_list = json.load(qna)
+        for item in qna_list["qna"]:
+            if item["intent"] == content:
+                return item["answers"][random.randint(0, len(item["answers"]) - 1)]
+        return "No answer"
+
 # Convert the request to a string.
-content = json.dumps(question)
-result = get_answers(content)
+# content = json.dumps(question)
+# result = get_answers_from_file("你好")
+# print(result)
 # print(pretty_print(result).encode('utf-8').decode('unicode_escape'))
