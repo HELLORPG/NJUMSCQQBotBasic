@@ -41,6 +41,7 @@ async def get_massage(session: NLPSession):
         else:
             # ans = entities_ans(entities_index)
             ans = entities_module_ans(entities_index)
+            await session.send(ans )
         # GRP ADD END
         pass
     else:
